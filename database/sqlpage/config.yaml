@@ -1,0 +1,26 @@
+# SQLPage configuration for the User List Viewer app
+# This file configures the SQLPage server, database connection, and metadata.
+# It uses the absolute SQLite database path as documented in db_connection.txt.
+
+# Server configuration
+server:
+  # Port on which SQLPage should listen
+  port: 5001
+  # Bind to all interfaces by default (optional; SQLPage defaults are acceptable)
+  host: 0.0.0.0
+
+# Application metadata
+app:
+  title: User List Viewer (SQLPage)
+
+# Database connection
+# SQLPage expects a DSN-like configuration. For SQLite, provide the absolute file path.
+# The db path here is sourced from database/db_connection.txt "File path:" line.
+database:
+  client: sqlite
+  # Absolute path to the SQLite database file
+  # Derived from: user-list-viewer-186205-186214/database/db_connection.txt
+  # File path: /home/kavia/workspace/code-generation/user-list-viewer-186205-186214/database/myapp.db
+  connection:
+    filename: /home/kavia/workspace/code-generation/user-list-viewer-186205-186214/database/myapp.db
+  useNullAsDefault: true
