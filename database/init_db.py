@@ -89,6 +89,12 @@ def _ensure_users_table(conn: sqlite3.Connection) -> None:
         )
         """
     )
+    # Minimal fix: if an existing database lacks the 'name' column (legacy schema),
+    # add it to ensure subsequent INSERTs into (name, email) succeed.
+    cur = conn.execute("PRAGMA table_info(users)")
+    cols = [row[1] for row in cur.fetchall()]
+    if "name" not in cols:
+        conn.execute("ALTER TABLE users ADD COLUMN name TEXT")
 
 
 def _table_is_empty(conn: sqlite3.Connection) -> bool:
